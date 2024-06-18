@@ -18,3 +18,7 @@ export const API_PREFIX = '/api'
 export const LOCALE_COOKIE_NAME = 'locale'
 
 export const DEFAULT_VALUE_MAX_LEN = 48
+
+// https://api3.foryouai.com/
+// http://localhost:8080/paa-boot/
+export const PAA_BOOT_URL_BASE = 'https://api3.foryouai.com'

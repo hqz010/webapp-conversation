@@ -22,6 +22,8 @@ const translation = {
   errorMessage: {
     valueOfVarRequired: '变量值必填',
     waitForResponse: '请等待上条信息响应完成',
+    pleaseLogin: '请先注册或登录',
+    buyVIPMembership: '您积分余额已不足，请在微信小程序-旺财ai中购买vip会员'
   },
 }
 

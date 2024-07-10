@@ -26,17 +26,13 @@ import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 import callGetFreeNumTotalApi, { callCheckVipByKeyApi } from '@/service/paa_boot';
 // import { callGetFreeNumTotalApi, callCheckVipByKeyApi, callDeductDialogueNumApi } from '@/service/paa_boot';
 import { callDeductDialogueNumApi } from '@/service/paa_boot';
-// import { useLocation } from 'react-router-dom';
 
 const Main: FC = () => {
   const { t } = useTranslation()
   const media = useBreakpoints()
   const isMobile = media === MediaType.mobile
   const hasSetAppConfig = APP_ID && API_KEY
-  // var accountId: string | null
   const [accountId, setAccountId] = useState('')
-  // let [pointsDeducted, setPointsDeducted] = useState('')
-
 
   /*
   * app info
@@ -341,48 +337,46 @@ const Main: FC = () => {
       return
     }
 
-    // console.log('accountId是：', accountId);
-    //会员是否是vip
-    let isVip = await callCheckVipByKeyApi(accountId, 1)
-    let pointsDeducted = false
+    // //会员是否是vip
+    // let isVip = await callCheckVipByKeyApi(accountId, 1)
+    // let pointsDeducted = false
     // console.log('isVip是：', isVip);
-    if (isMobile && isVip == 0) {
-      // 调用paa_boot api是否有权限    
-      let result = await callGetFreeNumTotalApi(accountId, 1);
+    // if (isMobile && isVip == 0) {
+    //   // 调用paa_boot api是否有权限    
+    //   let result = await callGetFreeNumTotalApi(accountId, 1);
+    //   console.log('result:', result);
+    //   if (result < 1) {
+    //     // console.log('没有权限', result);
+    //     // notify({ type: 'info', message: t('app.errorMessage.pleaseLogin') });
 
-      if (result < 1) {
-        // console.log('没有权限', result);
-        // notify({ type: 'info', message: t('app.errorMessage.pleaseLogin') });
+    //     //把用户发的问题写入对话列表
+    //     // 构建用户发送的消息项
+    //     const userMessageItem = {
+    //       id: `message-${Date.now()}-0`, // 生成唯一的消息ID
+    //       content: message, // 用户输入的消息内容
+    //       isAnswer: false, // 假设这是用户发送的消息，不是机器人的回复
+    //       message_files: files || [], // 消息关联的文件，如果有的话
+    //     };
 
-        //把用户发的问题写入对话列表
-        // 构建用户发送的消息项
-        const userMessageItem = {
-          id: `message-${Date.now()}-0`, // 生成唯一的消息ID
-          content: message, // 用户输入的消息内容
-          isAnswer: false, // 假设这是用户发送的消息，不是机器人的回复
-          message_files: files || [], // 消息关联的文件，如果有的话
-        };
+    //     // 如果不是VIP且没有权限，直接在聊天窗口中回复“请先开通VIP”        
+    //     let msg = t('app.errorMessage.buyVIPMembership')
+    //     const vipRequiredMessage = {
+    //       id: `message-${Date.now()}`, // 生成唯一的消息ID
+    //       content: msg, // VIP提示消息内容
+    //       isAnswer: true, // 假设这是用户发送的消息，不是机器人的回复
+    //       message_files: [], // 消息不包含文件
+    //     };
+    //     // 更新聊天列表，添加用户消息,VIP提示消息
+    //     // const updatedChatList = [...getChatList(), vipRequiredMessage];
+    //     const updatedChatList = [...getChatList(), userMessageItem, vipRequiredMessage];
+    //     setChatList(updatedChatList);
 
-        // 如果不是VIP且没有权限，直接在聊天窗口中回复“请先开通VIP”        
-        let msg = t('app.errorMessage.buyVIPMembership')
-        const vipRequiredMessage = {
-          id: `message-${Date.now()}`, // 生成唯一的消息ID
-          content: msg, // VIP提示消息内容
-          isAnswer: true, // 假设这是用户发送的消息，不是机器人的回复
-          message_files: [], // 消息不包含文件
-        };
-        // 更新聊天列表，添加用户消息,VIP提示消息
-        // const updatedChatList = [...getChatList(), vipRequiredMessage];
-        const updatedChatList = [...getChatList(), userMessageItem, vipRequiredMessage];
-        setChatList(updatedChatList);
-
-        return;
-      } else {
-        // setPointsDeducted('kou')
-        pointsDeducted = true
-        // console.log('pointsDeducted是：', pointsDeducted)
-      }
-    }
+    //     return;
+    //   } else {
+    //     pointsDeducted = true
+    //     // console.log('pointsDeducted是：', pointsDeducted)
+    //   }
+    // }
 
     const data: Record<string, any> = {
       inputs: currInputs,
@@ -637,11 +631,12 @@ const Main: FC = () => {
     })
 
     // console.log("开始积分扣除")
-    if (pointsDeducted) {
-      // console.log("accountId：", accountId)
-      let state = await callDeductDialogueNumApi(accountId, 1)  //扣除免费对话次数
-      // console.log("积分扣除成功")
-    }
+    // if (pointsDeducted) {
+    //   // console.log("accountId：", accountId)
+    //   let state = await callDeductDialogueNumApi(accountId, 1)  //扣除免费对话次数
+    //   console.log("state:", state)
+    //   // console.log("积分扣除成功")
+    // }
   }
 
   const handleFeedback = async (messageId: string, feedback: Feedbacktype) => {
@@ -735,7 +730,3 @@ const Main: FC = () => {
 }
 
 export default React.memo(Main)
-// function callDeductDialogueNumApi(accountId: string, arg1: number) {
-//   throw new Error('Function not implemented.')
-// }
-

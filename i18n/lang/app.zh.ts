@@ -25,6 +25,9 @@ const translation = {
     pleaseLogin: '请先注册或登录',
     buyVIPMembership: '您积分余额已不足，请在微信小程序-真好ai中购买vip会员'
   },
+  variableTable: {
+    optional: '可选',
+  },
 }
 
 export default translation

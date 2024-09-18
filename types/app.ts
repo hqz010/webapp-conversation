@@ -2,14 +2,28 @@ import type { Annotation } from './log'
 import type { Locale } from '@/i18n'
 import type { ThoughtItem } from '@/app/components/chat/type'
 
+// export type PromptVariable = {
+//   key: string
+//   name: string
+//   type: string
+//   default?: string | number
+//   options?: string[]
+//   max_length?: number
+//   required: boolean
+// }
 export type PromptVariable = {
   key: string
   name: string
-  type: string
+  type: string // "string" | "number" | "select",
   default?: string | number
+  required?: boolean
   options?: string[]
   max_length?: number
-  required: boolean
+  is_context_var?: boolean
+  enabled?: boolean
+  config?: Record<string, any>
+  icon?: string
+  icon_background?: string
 }
 
 export type PromptConfig = {
@@ -219,4 +233,13 @@ export enum CodeLanguage {
   python3 = 'python3',
   javascript = 'javascript',
   json = 'json',
+}
+
+export let Global_AccountId = ''
+export function setGlobal_AccountId(accountId: string) {
+  Global_AccountId = accountId;
+}
+
+export function getGlobal_AccountId() {
+  return Global_AccountId;
 }

@@ -26,6 +26,7 @@ import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 import callGetFreeNumTotalApi, { callCheckVipByKeyApi } from '@/service/paa_boot';
 // import { callGetFreeNumTotalApi, callCheckVipByKeyApi, callDeductDialogueNumApi } from '@/service/paa_boot';
 import { callDeductDialogueNumApi } from '@/service/paa_boot';
+import { setGlobal_AccountId, getGlobal_AccountId } from '@/types/app';
 
 const Main: FC = () => {
   const { t } = useTranslation()
@@ -328,6 +329,7 @@ const Main: FC = () => {
     // console.log('accountId是111：', accountId);
     if (accountId) {
       setAccountId(accountId);
+      setGlobal_AccountId(accountId);
     }
   }, []);
 

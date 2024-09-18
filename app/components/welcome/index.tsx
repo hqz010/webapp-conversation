@@ -9,6 +9,7 @@ import type { AppInfo, PromptConfig } from '@/types/app'
 import Toast from '@/app/components/base/toast'
 import Select from '@/app/components/base/select'
 import { DEFAULT_VALUE_MAX_LEN } from '@/config'
+import { getGlobal_AccountId } from '@/types/app';
 
 // regex to match the {{}} and replace it with a span
 const regex = /\{\{([^}]+)\}\}/g
@@ -57,6 +58,9 @@ const Welcome: FC<IWelcomeProps> = ({
       if (promptConfig) {
         promptConfig.prompt_variables.forEach((item) => {
           res[item.key] = ''
+          if (item.key == 'account') {
+            res[item.key] = getGlobal_AccountId
+          }
         })
       }
       setInputs(res)

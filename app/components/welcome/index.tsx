@@ -59,7 +59,7 @@ const Welcome: FC<IWelcomeProps> = ({
         promptConfig.prompt_variables.forEach((item) => {
           res[item.key] = ''
           if (item.key == 'account') {
-            res[item.key] = getGlobal_AccountId + '测试'
+            res[item.key] = getGlobal_AccountId() + '测试'
           }
         })
       }

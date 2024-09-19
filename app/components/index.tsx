@@ -326,7 +326,7 @@ const Main: FC = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     let accountId = queryParams.get('accountId');
-    console.log('accountId是111：', accountId);
+    // console.log('accountId是111：', accountId);
     if (accountId) {
       setAccountId(accountId);
       setGlobal_AccountId(accountId);

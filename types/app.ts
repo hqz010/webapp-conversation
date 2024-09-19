@@ -237,9 +237,11 @@ export enum CodeLanguage {
 
 export let Global_AccountId = ''
 export function setGlobal_AccountId(accountId: string) {
+  console.log('Setting Global_AccountId:', accountId);
   Global_AccountId = accountId;
 }
 
 export function getGlobal_AccountId() {
+  console.log('Getting Global_AccountId:', Global_AccountId);
   return Global_AccountId;
 }

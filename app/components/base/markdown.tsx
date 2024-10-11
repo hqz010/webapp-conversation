@@ -17,6 +17,14 @@ export function Markdown(props: { content: string }) {
         ]}
         components={{
           code({ node, inline, className, children, ...props }) {
+            if (children.length > 0 && `${children[0]}`.startsWith('video:')) {
+              return (
+                <video controls>
+                  <source src={`${children[0]}`.substring(6).trim()} type="video/mp4" /> {/* 这里可以根据需要添加更多的source标签以支持不同格式 */}
+                  您的浏览器不支持HTML5视频标签。
+                </video>
+              );
+            }
             const match = /language-(\w+)/.exec(className || '')
             return (!inline && match)
               ? (
